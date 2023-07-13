@@ -50,6 +50,9 @@ class Node:
     def next(self, val):
       self._next = val
 
+    def __str__(self):
+      return str(self._value)
+
 
 # TODO: Implement a Singly Linked List class here
 class LinkedList:
@@ -63,7 +66,7 @@ class LinkedList:
   def get_node(self, position):
     if position < 0:
       return None
-    if position >= length:
+    if position >= self._length:
       return None
     node = self._head
     for _ in range(position):
@@ -72,23 +75,47 @@ class LinkedList:
 
   # TODO: Implement the add_to_tail method here
   def add_to_tail(self, value):
-    pass
+    new_node = Node(value)
+    if self._length == 0:
+      self._head = new_node
+    else:
+      self._tail._next = new_node
+    self._tail = new_node
+    self._length += 1
 
   # TODO: Implement the add_to_head method here
   def add_to_head(self, value):
-    pass
+    new_node = Node(value)
+    if self._length == 0:
+      self._tail = new_node
+    else:
+      new_node._next = self._head
+    self._head = new_node
+    self._length += 1
 
   # TODO: Implement the remove_head method here
   def remove_head(self):
-    pass
+    if self._length == 0:
+      raise Exception("Can not remove head from empty list")
+    if self._length == 1:
+      self._tail = None
+    next_node = self._head._next
+    self._head = next_node
+    self._length -= 1
 
   # TODO: Implement the remove_tail method here
   def remove_tail(self):
-    pass
+    if self._length == 0:
+      raise Exception("Can not remove head from empty list")
+    if self._length == 1:
+      self._head = None
+    prev_node = self.get_node(self._length-2)
+    self._tail = prev_node
+    self._length -= 1
 
   # TODO: Implement the __len__ method here
   def __len__(self):
-    pass
+    return self._length
 
 # Phase 2
 
