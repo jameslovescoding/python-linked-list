@@ -31,18 +31,44 @@ Phase 2:
 class Node:
   # TODO: Set the `_value` `_next` node instance variables
   def __init__(self, value):
-    pass
+    self._value = value
+    self._next = None
+
+    @property
+    def value(self):
+      return self._value
+
+    @value.setter
+    def value(self, val):
+      self._value = val
+
+    @property
+    def next(self):
+      return self._next
+
+    @next.setter
+    def next(self, val):
+      self._next = val
 
 
 # TODO: Implement a Singly Linked List class here
 class LinkedList:
   # TODO: Set the `_head` node, `_tail` node, and list `_length` instance variables
   def __init__(self):
-    pass
+    self._head = None
+    self._tail = None
+    self._length = 0
 
   # TODO: Implement the get_node method here
   def get_node(self, position):
-    pass
+    if position < 0:
+      return None
+    if position >= length:
+      return None
+    node = self._head
+    for _ in range(position):
+      node = node.next
+    return node
 
   # TODO: Implement the add_to_tail method here
   def add_to_tail(self, value):
@@ -84,7 +110,14 @@ class LinkedList:
 
   # TODO: Implement the __str__ method here
   def __str__(self):
-    pass
+    node = self._head
+    lst = []
+    while node is not None:
+      lst.append(str(node.value))
+      node = node._next
+    return '->'.join(lst)
+
+
 
 # Phase 1 Manual Testing:
 
